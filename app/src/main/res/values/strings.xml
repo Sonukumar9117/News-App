@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">HeadlineHub</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="saved_fragment">Hello saved fragment</string>
+    <string name="search_fragment">Hello search fragment</string>
+    <string name="discover_fragment">Hello discover fragment</string>
+    <string name="home_fragment">Hello home fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
