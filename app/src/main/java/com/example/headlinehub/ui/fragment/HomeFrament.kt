@@ -11,6 +11,7 @@ import com.example.headlinehub.R
 import com.example.headlinehub.adapters.NewsAdapter
 import com.example.headlinehub.models.Article
 
+
 class HomeFrament : Fragment() {
 
     override fun onCreateView(
@@ -30,7 +31,19 @@ class HomeFrament : Fragment() {
         recyclerView.layoutManager= LinearLayoutManager(context)
          var adapter=NewsAdapter(requireContext(),news);
         recyclerView.adapter=adapter
-
+        adapter.setOnItemClickListener(object : NewsAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                //on clicking what you want to perform
+                val newsDescriptionFragment=webViewFragment()
+                val bundle=Bundle()
+                bundle.putString("url",news[position].url)
+                newsDescriptionFragment.arguments=bundle
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout,newsDescriptionFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        })
         return view
     }
 

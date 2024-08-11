@@ -3,7 +3,6 @@ package com.example.headlinehub.adapters
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -17,10 +16,19 @@ import java.util.ArrayList
 
 class NewsAdapter(context: Context, val newsList:ArrayList<Article>) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
+    lateinit var mListener: OnItemClickListener
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view=View.inflate(parent.context,R.layout.home_fragment_recycler_view,null)
-        return ViewHolder(view)
+        return ViewHolder(view,mListener)
     }
 
     override fun getItemCount(): Int {
@@ -36,17 +44,20 @@ class NewsAdapter(context: Context, val newsList:ArrayList<Article>) : RecyclerV
             .load(currentItem.urlToImage)
             .apply(
                 RequestOptions()
-                    .fitCenter()  // Or use .centerCrop() if you prefer cropping
+                    .fitCenter()
                     .transform(RoundedCorners(20))  // Adjust the radius as needed
             )
             .transition(DrawableTransitionOptions.withCrossFade())  // Optional: Add a crossfade transition
             .into(holder.headlineImage)
-//        holder.headlineImage.setImageResource(R.drawable.ic_launcher_background)
     }
-    class ViewHolder (itemView : View, listener: AdapterView.OnItemClickListener?=null):RecyclerView.ViewHolder(itemView){
+    class ViewHolder (itemView : View, listener: OnItemClickListener?):RecyclerView.ViewHolder(itemView){
       val headlineImage=itemView.findViewById<ImageView>(R.id.headline_image)
         val headlineTitle=itemView.findViewById<TextView>(R.id.headline_title)
         val headlineSrc=itemView.findViewById<TextView>(R.id.headline_src)
-
+        init {
+            itemView.setOnClickListener {
+                listener?.onItemClick(adapterPosition)
+            }
+        }
     }
 }
