@@ -2,7 +2,6 @@ package com.example.headlinehub.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.headlinehub.R
@@ -20,7 +19,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Dashboard : AppCompatActivity() {
+class Dashboard : BaseActivity(){
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var homeFrament: HomeFrament
     override fun onCreate(savedInstanceState: Bundle?) {

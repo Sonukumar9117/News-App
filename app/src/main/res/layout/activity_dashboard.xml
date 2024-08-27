@@ -28,6 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+      app:itemRippleColor="@color/blue"
         app:menu="@menu/menu_list">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

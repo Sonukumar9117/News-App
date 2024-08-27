@@ -39,7 +39,7 @@
                   android:text="headline title"
                   android:id="@+id/headline_title"
                   android:textStyle="bold"
-                  android:textColor="@color/black"
+                  android:textColor="@color/blue"
                   android:textSize="16sp"
                   />
 
